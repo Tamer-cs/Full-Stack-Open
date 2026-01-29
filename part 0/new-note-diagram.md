@@ -7,7 +7,7 @@ sequenceDiagram
     activate Server
     Server-->>Browser: 302 redirect
     deactivate Server
-    Note right of Browser: User clicked "Save"; server redirects
+    Note right of Browser: User clicked "Save", server redirects
 
     Browser->>Server: GET /notes
     activate Server
