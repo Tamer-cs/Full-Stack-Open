@@ -37,7 +37,10 @@ const App = () => {
   }
   const StaticLine = (props) => {
     return ( 
-      <p>{props.text} {props.value}</p>
+      <tr>
+        <td>{props.text}</td>
+        <td>{props.value}</td>
+      </tr>
     )
 
   }
@@ -45,14 +48,16 @@ const App = () => {
     const t = props.total
 
     return (t === 0 ? (<p>No feedback given</p>) :
-      <div>
-        <StaticLine text="good" value={props.good} />
-        <StaticLine text="neutral" value={props.neutral} />
-        <StaticLine text="bad" value={props.bad} />
-        <StaticLine text="all" value={props.total} />
-        <StaticLine text="average" value={props.average} />
-        <StaticLine text="positive" value={props.positive + " %"} />
-      </div>
+      <table>
+        <tbody>
+          <StaticLine text="good" value={props.good} />
+          <StaticLine text="neutral" value={props.neutral} />
+          <StaticLine text="bad" value={props.bad} />
+          <StaticLine text="all" value={props.total} />
+          <StaticLine text="average" value={props.average} />
+          <StaticLine text="positive" value={props.positive + " %"} />
+        </tbody>
+      </table>
     )
   }
 
