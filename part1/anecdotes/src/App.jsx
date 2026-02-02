@@ -7,6 +7,9 @@ const Button = (props) => (
 )
 
 const App = () => {
+
+  const [votes, setVotes] = useState(Array(8).fill(0))
+
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -18,18 +21,26 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
-  const handleClickFunction  = () => {
+  const handleClickNextAnecdote  = () => {
   const randomIndex = Math.floor(Math.random() * anecdotes.length)
   setSelected(randomIndex)
   console.log("Success",randomIndex)
 } 
+
+  const handleClickVote = () => {
+    const copy = [...votes]
+    copy[selected] = (copy[selected]) + 1
+    setVotes(copy)
+    console.log("Voted",copy)
+  }
 
   const [selected, setSelected] = useState(0)
 
   return (
     <div>
       {anecdotes[selected]}
-      <Button text = "Next anecdote" handleClick ={() => handleClickFunction()} />
+      <Button text = "Vote" handleClick ={() => handleClickVote()} />
+      <Button text = "Next anecdote" handleClick ={() => handleClickNextAnecdote()} />
     </div>
   )
 }
