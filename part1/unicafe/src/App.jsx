@@ -35,6 +35,20 @@ const App = () => {
     const t = total()
     return t === 0 ? 0 : (good / t) * 100
   }
+  const Statistics = (props) => {
+    const t = props.total
+
+    return (
+      <div>
+        <p>good {props.good}</p>
+        <p>neutral {props.neutral}</p>
+        <p>bad {props.bad}</p>
+        <p>all {props.total}</p>
+        <p>average {props.average}</p>
+       <p>positive {props.positive} %</p>
+      </div>
+    )
+  }
 
 
   return (
@@ -43,13 +57,9 @@ const App = () => {
       <Button onClick={setToGood} text="good" />
       <Button onClick={setToNeutral} text="neutral" />
       <Button onClick={setToBad} text="bad" />
+
       <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total()}</p>
-      <p>average {average()}</p>
-      <p>positive {positive()} %</p>
+      <Statistics good={good} neutral={neutral} bad={bad} total={total()} average={average()} positive={positive()} />
 
     </div>
   )
