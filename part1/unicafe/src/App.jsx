@@ -38,7 +38,7 @@ const App = () => {
   const Statistics = (props) => {
     const t = props.total
 
-    return (
+    return (t === 0 ? (<p>No feedback given</p>) :
       <div>
         <p>good {props.good}</p>
         <p>neutral {props.neutral}</p>
