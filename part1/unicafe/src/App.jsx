@@ -35,21 +35,26 @@ const App = () => {
     const t = total()
     return t === 0 ? 0 : (good / t) * 100
   }
+  const StaticLine = (props) => {
+    return ( 
+      <p>{props.text} {props.value}</p>
+    )
+
+  }
   const Statistics = (props) => {
     const t = props.total
 
     return (t === 0 ? (<p>No feedback given</p>) :
       <div>
-        <p>good {props.good}</p>
-        <p>neutral {props.neutral}</p>
-        <p>bad {props.bad}</p>
-        <p>all {props.total}</p>
-        <p>average {props.average}</p>
-       <p>positive {props.positive} %</p>
+        <StaticLine text="good" value={props.good} />
+        <StaticLine text="neutral" value={props.neutral} />
+        <StaticLine text="bad" value={props.bad} />
+        <StaticLine text="all" value={props.total} />
+        <StaticLine text="average" value={props.average} />
+        <StaticLine text="positive" value={props.positive + " %"} />
       </div>
     )
   }
-
 
   return (
     <div>
