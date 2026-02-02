@@ -32,15 +32,20 @@ const App = () => {
     copy[selected] = (copy[selected]) + 1
     setVotes(copy)
     console.log("Voted",copy)
-  }
 
+  }
   const [selected, setSelected] = useState(0)
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <Button text = "Vote" handleClick ={() => handleClickVote()} />
       <Button text = "Next anecdote" handleClick ={() => handleClickNextAnecdote()} />
+      <p>has {votes[selected]} votes</p>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[votes.indexOf(Math.max(...votes))]}
+      <p>has {Math.max(...votes)} votes</p>
     </div>
   )
 }
