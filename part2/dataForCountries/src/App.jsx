@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchInput from "./components/SearchInput";
 import CountryResults from "./components/CountryResults";
 import countryService from "./services/countryService";
@@ -17,14 +17,28 @@ const App = () => {
     setFilter(event.target.value);
   };
 
-  const countriesToShow = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(filter.toLowerCase()),
-  );
+  const handleShowCountry = (countryName) => {
+    setFilter(countryName);
+  };
+
+  const getCountriesToShow = () => {
+    if (filter === "") {
+      return [];
+    }
+
+    const normalizedFilter = filter.toLowerCase();
+
+    return countries.filter((country) =>
+      country.name.common.toLowerCase().includes(normalizedFilter),
+    );
+  };
+
+  const countriesToShow = getCountriesToShow();
 
   return (
     <div>
       <SearchInput value={filter} onChange={handleSearch} />
-      <CountryResults countries={countriesToShow} />
+      <CountryResults countries={countriesToShow} onShowCountry={handleShowCountry} />
     </div>
   );
 };
