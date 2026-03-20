@@ -42,8 +42,16 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to the phonebook`)
+    const repeatedPerson = persons.find(p => p.name === newName)
+    if (repeatedPerson) {
+      const updatedPerson = { ...repeatedPerson, number: newNumber }
+
+      window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
+        ? personService.updatePerson(repeatedPerson.id, updatedPerson).then(data => {
+          setPersons(persons.map(p => p.id !== repeatedPerson.id ? p : data))
+        })
+        : console.log('Update cancelled')
+
     } else {
       const temp = { name: newName, number: newNumber, id: persons.length + 1 }
       personService.create(temp).then(data => {
