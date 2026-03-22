@@ -1,6 +1,7 @@
 import CountryDetail from "./CountryDetail";
 
-const CountryResults = ({ countries, onShowCountry }) => {
+
+const CountryResults = ({ countries, onShowCountry, apiKey }) => {
 	if (countries.length > 10) {
 		return <p>Too many matches, specify another filter</p>;
 	}
@@ -18,7 +19,7 @@ const CountryResults = ({ countries, onShowCountry }) => {
 	}
 
 	if (countries.length === 1) {
-		return <CountryDetail country={countries[0]} />;
+		return <CountryDetail country={countries[0]} apiKey={apiKey} />;
 	}
 
 	return null;

@@ -1,4 +1,6 @@
-const CountryDetail = ({ country }) => {
+import CountryWeather from "./CountryWeather";
+
+const CountryDetail = ({ country, apiKey }) => {
   const languages = country.languages ? Object.values(country.languages) : [];
   const capitals = Array.isArray(country.capital) ? country.capital : [];
   const flagUrl = country.flags.png;
@@ -15,6 +17,7 @@ const CountryDetail = ({ country }) => {
         ))}
       </ul>
         <img src={flagUrl} alt={`Flag of ${country.name.common}`} width="200" />
+        <CountryWeather apiKey={apiKey} capital={capitals[0]} />
     </div>
   );
 };

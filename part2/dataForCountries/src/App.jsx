@@ -3,6 +3,8 @@ import SearchInput from "./components/SearchInput";
 import CountryResults from "./components/CountryResults";
 import countryService from "./services/countryService";
 
+const apiKey = import.meta.env.VITE_SOME_KEY;
+
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [filter, setFilter] = useState("");
@@ -38,7 +40,8 @@ const App = () => {
   return (
     <div>
       <SearchInput value={filter} onChange={handleSearch} />
-      <CountryResults countries={countriesToShow} onShowCountry={handleShowCountry} />
+      <CountryResults countries={countriesToShow} onShowCountry={handleShowCountry} apiKey={apiKey} />
+      
     </div>
   );
 };
